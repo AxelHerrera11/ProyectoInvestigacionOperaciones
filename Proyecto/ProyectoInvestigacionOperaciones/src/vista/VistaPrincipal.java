@@ -86,10 +86,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jSplitPane2.setLeftComponent(menu);
 
         contenedor.setBackground(new java.awt.Color(244, 246, 248));
-        contenedor.setMaximumSize(new java.awt.Dimension(1040, 100));
-        contenedor.setMinimumSize(new java.awt.Dimension(1040, 100));
+        contenedor.setMaximumSize(new java.awt.Dimension(1040, 720));
+        contenedor.setMinimumSize(new java.awt.Dimension(1040, 720));
         contenedor.setName(""); // NOI18N
-        contenedor.setPreferredSize(new java.awt.Dimension(1040, 100));
+        contenedor.setPreferredSize(new java.awt.Dimension(1040, 720));
         contenedor.setLayout(new java.awt.CardLayout());
         jSplitPane2.setRightComponent(contenedor);
 
