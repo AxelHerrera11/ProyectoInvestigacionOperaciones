@@ -4,6 +4,14 @@
  */
 package vista;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+
 /**
  *
  * @author Omega03
@@ -27,7 +35,18 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
     private void initComponents() {
 
         panelFondo = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        cmbTipo = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
 
         setMaximumSize(new java.awt.Dimension(1040, 720));
         setMinimumSize(new java.awt.Dimension(1040, 720));
@@ -37,20 +56,118 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
         panelFondo.setBackground(new java.awt.Color(244, 246, 248));
         panelFondo.setMaximumSize(new java.awt.Dimension(1040, 720));
         panelFondo.setMinimumSize(new java.awt.Dimension(1040, 720));
+        panelFondo.setPreferredSize(new java.awt.Dimension(1040, 720));
         panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(244, 246, 248));
+        jPanel1.setForeground(new java.awt.Color(27, 38, 59));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("60s Scoreboard", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(36, 59, 85));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Método Gráfico");
-        panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 50));
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 50));
+
+        panelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 50));
+
+        cmbTipo.setBackground(new java.awt.Color(244, 246, 248));
+        cmbTipo.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
+        cmbTipo.setForeground(new java.awt.Color(36, 59, 85));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Maximizar", "Minimizar" }));
+        cmbTipo.setToolTipText("");
+        cmbTipo.setBorder(null);
+        panelFondo.add(cmbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 170, 30));
+        // quitar borde estándar
+        cmbTipo.setBorder(BorderFactory.createEmptyBorder());
+
+        // aplicar solo borde inferior
+        //cmbTipo.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(0x1565C0)));
+
+        // fondo y texto
+        cmbTipo.setUI(new javax.swing.plaf.basic.BasicComboBoxUI());
+        cmbTipo.setUI(new BasicComboBoxUI() {
+            @Override
+            public void paintCurrentValueBackground(Graphics g, Rectangle bounds, boolean hasFocus) {
+                // Evita que pinte un fondo gris feo
+                g.setColor(cmbTipo.getBackground());
+                g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+            }
+        });
+
+        cmbTipo.setUI(new BasicComboBoxUI() {
+            @Override
+            protected JButton createArrowButton() {
+                JButton button = new JButton("▼");
+                button.setBorder(BorderFactory.createEmptyBorder());
+                button.setContentAreaFilled(false);
+                button.setForeground(new Color(36,59,85)); // color de la flecha
+                return button;
+            }
+        });
+
+        jTextField1.setBackground(new java.awt.Color(244, 246, 248));
+        jTextField1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(36, 59, 85));
+        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
+        panelFondo.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 30));
+
+        jLabel2.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(36, 59, 85));
+        jLabel2.setText("Paso 2 - Graficar e identificar región factible");
+        panelFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 540, -1));
+
+        jTextField2.setBackground(new java.awt.Color(244, 246, 248));
+        jTextField2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(36, 59, 85));
+        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
+        panelFondo.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 600, 30));
+
+        jLabel3.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(36, 59, 85));
+        jLabel3.setText("Restricciones");
+        panelFondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 150, 150, -1));
+
+        jTextField3.setBackground(new java.awt.Color(244, 246, 248));
+        jTextField3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTextField3.setForeground(new java.awt.Color(36, 59, 85));
+        jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
+        panelFondo.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 600, 30));
+
+        jLabel4.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(36, 59, 85));
+        jLabel4.setText("Paso 3 - Identificar puntos de intersección");
+        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 510, -1));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        panelFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, 330, 330));
+
+        jLabel5.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(36, 59, 85));
+        jLabel5.setText("Paso 1 - calcular restricciones");
+        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 370, -1));
+
+        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        panelFondo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 370, 370));
 
         add(panelFondo);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel panelFondo;
     // End of variables declaration//GEN-END:variables
 }

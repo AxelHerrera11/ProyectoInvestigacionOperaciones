@@ -4,6 +4,9 @@
  */
 package vista;
 
+import controlador.ControladorVistaPrincipal;
+import modelo.ModeloVistaPrincipal;
+
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -17,12 +20,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
      * Creates new form VistaPrincipal
      */
     public VistaPrincipal() {
+        
         initComponents();
+        ModeloVistaPrincipal modelo = new ModeloVistaPrincipal(this);
+        ControladorVistaPrincipal controlador = new ControladorVistaPrincipal(modelo);
+        setControlador(controlador);
         this.setResizable(false);
+        this.setSize(1280, 720);
         this.setLocationRelativeTo(null);
         ImageIcon iconOriginal = new ImageIcon(getClass().getResource("/imagenes/Logo Proyecto Blanco P.png"));
         Image imgEscalada = iconOriginal.getImage().getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(), Image.SCALE_SMOOTH);
         jLabel3.setIcon(new ImageIcon(imgEscalada));
+
     }
 
     /**
@@ -37,17 +46,25 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jSplitPane2 = new javax.swing.JSplitPane();
         menu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        btnMetodoGrafico = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         contenedor = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
+        setSize(new java.awt.Dimension(1280, 720));
 
         jSplitPane2.setDividerLocation(240);
+        jSplitPane2.setDividerSize(1);
+        jSplitPane2.setMaximumSize(new java.awt.Dimension(1280, 720));
+        jSplitPane2.setMinimumSize(new java.awt.Dimension(1280, 720));
+        jSplitPane2.setPreferredSize(new java.awt.Dimension(1280, 720));
 
         menu.setBackground(new java.awt.Color(27, 38, 59));
         menu.setMaximumSize(new java.awt.Dimension(240, 720));
@@ -56,7 +73,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         menu.setPreferredSize(new java.awt.Dimension(240, 720));
         menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("60s Scoreboard", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Menú");
@@ -64,24 +81,24 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel1.setMinimumSize(new java.awt.Dimension(240, 30));
         jLabel1.setName(""); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(240, 30));
-        menu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 70));
+        menu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 50));
 
-        jPanel1.setBackground(new java.awt.Color(21, 101, 192));
-        jPanel1.setMaximumSize(new java.awt.Dimension(240, 100));
-        jPanel1.setMinimumSize(new java.awt.Dimension(240, 100));
-        jPanel1.setPreferredSize(new java.awt.Dimension(240, 100));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnMetodoGrafico.setBackground(new java.awt.Color(21, 101, 192));
+        btnMetodoGrafico.setMaximumSize(new java.awt.Dimension(240, 100));
+        btnMetodoGrafico.setMinimumSize(new java.awt.Dimension(240, 100));
+        btnMetodoGrafico.setPreferredSize(new java.awt.Dimension(240, 100));
+        btnMetodoGrafico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Método Gráfico");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 50));
+        btnMetodoGrafico.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 40));
 
-        menu.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 240, 50));
+        menu.add(btnMetodoGrafico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 240, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo Proyecto Blanco P.png"))); // NOI18N
-        menu.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, 240, 80));
+        menu.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 240, 80));
 
         jSplitPane2.setLeftComponent(menu);
 
@@ -91,6 +108,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         contenedor.setName(""); // NOI18N
         contenedor.setPreferredSize(new java.awt.Dimension(1040, 720));
         contenedor.setLayout(new java.awt.CardLayout());
+
+        jLabel4.setFont(new java.awt.Font("60s Scoreboard", 0, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(36, 59, 85));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("INVESTIGACIÓN DE OPERACIONES");
+        jLabel4.setMaximumSize(new java.awt.Dimension(1040, 720));
+        jLabel4.setMinimumSize(new java.awt.Dimension(1040, 720));
+        jLabel4.setPreferredSize(new java.awt.Dimension(1040, 720));
+        contenedor.add(jLabel4, "card2");
+
         jSplitPane2.setRightComponent(contenedor);
 
         getContentPane().add(jSplitPane2, java.awt.BorderLayout.CENTER);
@@ -134,12 +161,17 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel contenedor;
+    public javax.swing.JPanel btnMetodoGrafico;
+    public javax.swing.JPanel contenedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
+
+    public void setControlador(ControladorVistaPrincipal controlador) {
+        this.btnMetodoGrafico.addMouseListener(controlador);
+    }
 }
