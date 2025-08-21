@@ -4,6 +4,7 @@
  */
 package vista;
 
+import controlador.ControladorMetodoGrafico;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -11,6 +12,7 @@ import java.awt.Rectangle;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import modelo.ModeloMetodoGrafico;
 
 /**
  *
@@ -23,6 +25,9 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
      */
     public VistaMetodoGrafico() {
         initComponents();
+         ModeloMetodoGrafico modelo = new ModeloMetodoGrafico  (this);
+        ControladorMetodoGrafico controlador = new ControladorMetodoGrafico(modelo);
+        setControlador(controlador);
     }
 
     /**
@@ -170,4 +175,8 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel panelFondo;
     // End of variables declaration//GEN-END:variables
+
+    private void setControlador(ControladorMetodoGrafico controlador) {
+
+    }
 }
