@@ -7,7 +7,8 @@ package vista;
 import controlador.ControladorVistaPrincipal;
 import modelo.ModeloVistaPrincipal;
 
-import java.awt.Image;
+import java.awt.*;
+import java.io.InputStream;
 import javax.swing.ImageIcon;
 
 /**
@@ -28,6 +29,17 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.setResizable(true);
         this.setSize(1280, 720);
         this.setLocationRelativeTo(null);
+        try {
+            InputStream is = getClass().getResourceAsStream("/fuentes/60S SCOREBOARD.TTF");
+            Font fuente = Font.createFont(Font.TRUETYPE_FONT, is);
+
+            // Registrar en el sistema gráfico de Java
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(fuente);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ImageIcon iconOriginal = new ImageIcon(getClass().getResource("/imagenes/Logo Proyecto Blanco P.png"));
         Image imgEscalada = iconOriginal.getImage().getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(), Image.SCALE_SMOOTH);
         jLabel3.setIcon(new ImageIcon(imgEscalada));
