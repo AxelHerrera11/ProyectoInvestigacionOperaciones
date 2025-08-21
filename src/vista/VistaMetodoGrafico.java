@@ -5,6 +5,9 @@
 package vista;
 
 import controlador.ControladorMetodoGrafico;
+import implementacion.MetodoGraficoImp;
+import implementacion.MetodoGraficoImp.PanelGrafico;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -19,16 +22,36 @@ import modelo.ModeloMetodoGrafico;
  * @author Omega03
  */
 public class VistaMetodoGrafico extends javax.swing.JPanel {
+     private MetodoGraficoImp metodoGrafico;
+    private PanelGrafico panelGrafico;
 
     /**
      * Creates new form VistaMetodoGrafico
      */
-    public VistaMetodoGrafico() {
+public VistaMetodoGrafico() {
         initComponents();
-         ModeloMetodoGrafico modelo = new ModeloMetodoGrafico  (this);
+
+        // Inicializar modelo y controlador
+        ModeloMetodoGrafico modelo = new ModeloMetodoGrafico(this);
         ControladorMetodoGrafico controlador = new ControladorMetodoGrafico(modelo);
         setControlador(controlador);
+
+        // Crear el objeto MetodoGrafico y el panel gráfico
+        metodoGrafico = new MetodoGraficoImp();
+       panelGrafico = metodoGrafico.new PanelGrafico(metodoGrafico);
+
+
+        // Reemplazar jPanel2 por el panel personalizado
+        jPanel2.setLayout(new BorderLayout());
+        jPanel2.add(panelGrafico, BorderLayout.CENTER);
+        jPanel2.revalidate();
+        jPanel2.repaint();
     }
+
+ 
+
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,6 +75,8 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        btnCalcular = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1040, 720));
         setMinimumSize(new java.awt.Dimension(1040, 720));
@@ -156,17 +181,33 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
         panelFondo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 370, 370));
 
+        btnCalcular.setBackground(new java.awt.Color(21, 101, 192));
+        btnCalcular.setMaximumSize(new java.awt.Dimension(240, 100));
+        btnCalcular.setMinimumSize(new java.awt.Dimension(240, 100));
+        btnCalcular.setPreferredSize(new java.awt.Dimension(240, 100));
+        btnCalcular.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Calcular owo");
+        btnCalcular.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 40));
+
+        panelFondo.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 240, 40));
+
         add(panelFondo);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JPanel btnCalcular;
     public javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -176,7 +217,8 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
     private javax.swing.JPanel panelFondo;
     // End of variables declaration//GEN-END:variables
 
+   // Si tenés un setControlador, debería estar definido aquí
     private void setControlador(ControladorMetodoGrafico controlador) {
-
+        // Implementa si hace falta asignar listeners
     }
 }

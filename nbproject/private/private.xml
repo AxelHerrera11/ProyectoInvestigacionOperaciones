@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/axels/Documents/Universidad/Semestre%206/Investigación%20de%20Operaciones/Proyecto/ProyectoInvestigacionOperaciones/src/controlador/ControladorVistaPrincipal.java</file>
-            <file>file:/C:/Users/axels/Documents/Universidad/Semestre%206/Investigación%20de%20Operaciones/Proyecto/ProyectoInvestigacionOperaciones/src/vista/VistaPrincipal.java</file>
-            <file>file:/C:/Users/axels/Documents/Universidad/Semestre%206/Investigación%20de%20Operaciones/Proyecto/ProyectoInvestigacionOperaciones/src/vista/VistaMetodoGrafico.java</file>
-            <file>file:/C:/Users/axels/Documents/Universidad/Semestre%206/Investigación%20de%20Operaciones/Proyecto/ProyectoInvestigacionOperaciones/src/vista/VistaPrincipal2.java</file>
+            <file>file:/C:/Users/javie/OneDrive/Datos%20adjuntos/Documentos/NetBeansProjects/ProyectoInvestigacionOperaciones/src/interfaces/IMetodoGrafico.java</file>
+            <file>file:/C:/Users/javie/OneDrive/Datos%20adjuntos/Documentos/NetBeansProjects/ProyectoInvestigacionOperaciones/src/controlador/ControladorMetodoGrafico.java</file>
+            <file>file:/C:/Users/javie/OneDrive/Datos%20adjuntos/Documentos/NetBeansProjects/ProyectoInvestigacionOperaciones/src/vista/VistaMetodoGrafico.java</file>
+            <file>file:/C:/Users/javie/OneDrive/Datos%20adjuntos/Documentos/NetBeansProjects/ProyectoInvestigacionOperaciones/src/modelo/ModeloMetodoGrafico.java</file>
+            <file>file:/C:/Users/javie/OneDrive/Datos%20adjuntos/Documentos/NetBeansProjects/ProyectoInvestigacionOperaciones/src/controlador/ControladorVistaPrincipal.java</file>
         </group>
     </open-files>
 </project-private>

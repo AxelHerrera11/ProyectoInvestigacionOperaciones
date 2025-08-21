@@ -11,24 +11,24 @@ import vista.VistaMetodoGrafico;
  * @author javie
  */
 public class ModeloMetodoGrafico {
-    VistaMetodoGrafico vistaMetodoGrafico;
+    VistaMetodoGrafico vista;
 
     public ModeloMetodoGrafico() {
     }
 
-    public ModeloMetodoGrafico(VistaMetodoGrafico vistaMetodoGrafico) {
-        this.vistaMetodoGrafico = vistaMetodoGrafico;
-    }
-    
-
-    public VistaMetodoGrafico getVistaMetodoGrafico() {
-        return vistaMetodoGrafico;
+    public ModeloMetodoGrafico(VistaMetodoGrafico vista) {
+        this.vista = vista;
     }
 
-    public void setVistaMetodoGrafico(VistaMetodoGrafico vistaMetodoGrafico) {
-        this.vistaMetodoGrafico = vistaMetodoGrafico;
+    public VistaMetodoGrafico getVista() {
+        return vista;
     }
-    
+
+    public void setVista(VistaMetodoGrafico vista) {
+        this.vista = vista;
+    }
+
+   
     
     
 }
