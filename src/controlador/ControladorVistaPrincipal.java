@@ -34,6 +34,7 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
     }
 
     private JPanel btnCerrarPrograma;
+    private JPanel btnMetodoGrafico;
     private int xMouse;
     private int yMouse;
 
@@ -61,11 +62,13 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
     @Override
     public void mouseEntered(MouseEvent e) {
         colorFondoPanel(btnCerrarPrograma, rojoPrincipal, e);
+        colorFondoPanel(btnMetodoGrafico, azulHover, e);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         colorFondoPanel(btnCerrarPrograma, grisOscuroHex, e);
+        colorFondoPanel(btnMetodoGrafico, azulAcento, e);
     }
 
     @Override
@@ -108,6 +111,7 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
     @Override
     public void windowOpened(WindowEvent e) {
         btnCerrarPrograma = modelo.getVista().btnCerrarPrograma;
+        btnMetodoGrafico = modelo.getVista().btnMetodoGrafico;
     }
 
     @Override
