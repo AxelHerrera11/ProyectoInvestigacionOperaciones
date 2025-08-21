@@ -43,7 +43,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane2 = new javax.swing.JSplitPane();
+        fondoPrincipal = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        split = new javax.swing.JSplitPane();
         menu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnMetodoGrafico = new javax.swing.JPanel();
@@ -51,26 +53,37 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         contenedor = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        barraMovimiento = new javax.swing.JPanel();
+        btnCerrarPrograma = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 102, 102));
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setMaximumSize(new java.awt.Dimension(1280, 720));
-        setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setMaximumSize(new java.awt.Dimension(1280, 760));
+        setMinimumSize(new java.awt.Dimension(1280, 760));
+        setUndecorated(true);
         setResizable(false);
-        setSize(new java.awt.Dimension(1280, 720));
+        setSize(new java.awt.Dimension(1280, 760));
 
-        jSplitPane2.setDividerLocation(240);
-        jSplitPane2.setDividerSize(1);
-        jSplitPane2.setMaximumSize(new java.awt.Dimension(1280, 720));
-        jSplitPane2.setMinimumSize(new java.awt.Dimension(1280, 720));
-        jSplitPane2.setPreferredSize(new java.awt.Dimension(1280, 720));
+        fondoPrincipal.setLayout(new java.awt.BorderLayout());
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setMinimumSize(new java.awt.Dimension(1280, 720));
+
+        split.setBackground(new java.awt.Color(51, 51, 51));
+        split.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 51, 51)));
+        split.setDividerLocation(240);
+        split.setDividerSize(1);
+        split.setForeground(new java.awt.Color(51, 51, 51));
+        split.setMaximumSize(new java.awt.Dimension(1280, 720));
+        split.setMinimumSize(new java.awt.Dimension(1280, 720));
+        split.setPreferredSize(new java.awt.Dimension(1280, 720));
 
         menu.setBackground(new java.awt.Color(27, 38, 59));
         menu.setMaximumSize(new java.awt.Dimension(240, 720));
-        menu.setMinimumSize(new java.awt.Dimension(240, 720));
         menu.setName(""); // NOI18N
-        menu.setPreferredSize(new java.awt.Dimension(240, 720));
         menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("60s Scoreboard", 1, 24)); // NOI18N
@@ -98,16 +111,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         menu.add(btnMetodoGrafico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 240, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo Proyecto Blanco P.png"))); // NOI18N
-        menu.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 240, 80));
+        menu.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 240, 80));
 
-        jSplitPane2.setLeftComponent(menu);
+        split.setLeftComponent(menu);
 
         contenedor.setBackground(new java.awt.Color(244, 246, 248));
-        contenedor.setMaximumSize(new java.awt.Dimension(1040, 720));
-        contenedor.setMinimumSize(new java.awt.Dimension(1040, 720));
         contenedor.setName(""); // NOI18N
-        contenedor.setPreferredSize(new java.awt.Dimension(1040, 720));
-        contenedor.setLayout(new java.awt.CardLayout());
+        contenedor.setLayout(new javax.swing.BoxLayout(contenedor, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel4.setFont(new java.awt.Font("60s Scoreboard", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(36, 59, 85));
@@ -116,11 +126,59 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel4.setMaximumSize(new java.awt.Dimension(1040, 720));
         jLabel4.setMinimumSize(new java.awt.Dimension(1040, 720));
         jLabel4.setPreferredSize(new java.awt.Dimension(1040, 720));
-        contenedor.add(jLabel4, "card2");
+        contenedor.add(jLabel4);
 
-        jSplitPane2.setRightComponent(contenedor);
+        split.setRightComponent(contenedor);
 
-        getContentPane().add(jSplitPane2, java.awt.BorderLayout.CENTER);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(split, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(split, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        fondoPrincipal.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        barraMovimiento.setBackground(new java.awt.Color(51, 51, 51));
+        barraMovimiento.setMinimumSize(new java.awt.Dimension(1280, 40));
+        barraMovimiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnCerrarPrograma.setBackground(new java.awt.Color(51, 51, 51));
+        btnCerrarPrograma.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel5.setFont(new java.awt.Font("60s Scoreboard", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("x");
+        btnCerrarPrograma.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 40));
+
+        barraMovimiento.add(btnCerrarPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 0, 50, 40));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("60s Scoreboard", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText(" Universidad mariano gálvez de Guatemala, el Progreso.");
+        barraMovimiento.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 40));
+
+        fondoPrincipal.add(barraMovimiento, java.awt.BorderLayout.PAGE_START);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fondoPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fondoPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -161,17 +219,27 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JPanel barraMovimiento;
+    public javax.swing.JPanel btnCerrarPrograma;
     public javax.swing.JPanel btnMetodoGrafico;
     public javax.swing.JPanel contenedor;
+    private javax.swing.JPanel fondoPrincipal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel menu;
+    private javax.swing.JSplitPane split;
     // End of variables declaration//GEN-END:variables
 
     public void setControlador(ControladorVistaPrincipal controlador) {
         this.btnMetodoGrafico.addMouseListener(controlador);
+        this.btnCerrarPrograma.addMouseListener(controlador);
+        this.barraMovimiento.addMouseListener(controlador);
+        this.barraMovimiento.addMouseMotionListener(controlador);
+        this.addWindowListener(controlador);
     }
 }
