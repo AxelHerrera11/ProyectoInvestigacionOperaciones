@@ -25,7 +25,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         ModeloVistaPrincipal modelo = new ModeloVistaPrincipal(this);
         ControladorVistaPrincipal controlador = new ControladorVistaPrincipal(modelo);
         setControlador(controlador);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setSize(1280, 720);
         this.setLocationRelativeTo(null);
         ImageIcon iconOriginal = new ImageIcon(getClass().getResource("/imagenes/Logo Proyecto Blanco P.png"));
