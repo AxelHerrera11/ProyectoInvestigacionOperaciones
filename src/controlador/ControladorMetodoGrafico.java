@@ -5,15 +5,17 @@
 package controlador;
 
 import modelo.ModeloMetodoGrafico;
+import modelo.ModeloVistaPrincipal;
+import vista.VistaMetodoGrafico;
 
 /**
  *
  * @author javie
  */
 public class ControladorMetodoGrafico {
+    ModeloMetodoGrafico modelo;
 
     public ControladorMetodoGrafico(ModeloMetodoGrafico modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.modelo = modelo;
     }
-    
 }
