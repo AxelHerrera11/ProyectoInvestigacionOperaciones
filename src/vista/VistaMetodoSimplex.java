@@ -20,31 +20,16 @@ import modelo.ModeloMetodoGrafico;
  *
  * @author Omega03
  */
-public class VistaMetodoGrafico extends javax.swing.JPanel {
+public class VistaMetodoSimplex extends javax.swing.JPanel {
  
 
     public JPanel panelGrafico;
 
-    public VistaMetodoGrafico() {
+    public VistaMetodoSimplex() {
         initComponents();
 
         // Inicializar modelo y controlador
-        ModeloMetodoGrafico modelo = new ModeloMetodoGrafico(this);
-        ControladorMetodoGrafico controlador = new ControladorMetodoGrafico(modelo);
-        setControlador(controlador);
-
-        // Usar el panel gráfico que el controlador configuró
-        panelGrafico = modelo.getPanelGrafico();
-        panelGrafico.setPreferredSize(new Dimension(400, 400)); // Asegurar tamaño visible
-
-        // Reemplazar jPanel2 por el panel personalizado
-        panelGrafica.setLayout(new BorderLayout());
-        panelGrafica.add(panelGrafico, BorderLayout.CENTER);
-        panelGrafica.revalidate();
-        panelGrafica.repaint();
-
-        // Opcional: agregar borde para confirmar visualmente
-        panelGrafica.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+ 
     }
 
  
@@ -71,7 +56,7 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtRestricciones = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        panelGrafica = new javax.swing.JPanel();
+        panelTabla1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         panelTabla = new javax.swing.JPanel();
         btnCalcular = new javax.swing.JPanel();
@@ -95,7 +80,7 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("60s Scoreboard", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(36, 59, 85));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Método Gráfico");
+        jLabel1.setText("Método SÍMPLEX");
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 50));
 
@@ -144,7 +129,7 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("60s Scoreboard", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(36, 59, 85));
-        jLabel2.setText("Paso 2 - Graficar e identificar región factible");
+        jLabel2.setText("Paso 2 - FORMAM ESTÁNDAR A FORMA SIMPLEX");
         panelFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 450, -1));
 
         txtCalcularRestricciones.setBackground(new java.awt.Color(244, 246, 248));
@@ -166,19 +151,19 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("60s Scoreboard", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(36, 59, 85));
-        jLabel4.setText("Paso 3 - Identificar puntos de intersección");
-        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, 510, -1));
+        jLabel4.setText("Paso 3 - Prueba de optimalidad");
+        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 510, -1));
 
-        panelGrafica.setBackground(new java.awt.Color(244, 246, 248));
-        panelFondo.add(panelGrafica, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 370, 370));
+        panelTabla1.setBackground(new java.awt.Color(204, 204, 204));
+        panelFondo.add(panelTabla1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 600, 140));
 
         jLabel5.setFont(new java.awt.Font("60s Scoreboard", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(36, 59, 85));
-        jLabel5.setText("Paso 1 - calcular restricciones");
-        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 370, -1));
+        jLabel5.setText("Paso 1 - MODELO LINEAL A FORMAM ESTÁNDAR");
+        panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 410, -1));
 
-        panelTabla.setBackground(new java.awt.Color(244, 246, 248));
-        panelFondo.add(panelTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 370, 370));
+        panelTabla.setBackground(new java.awt.Color(204, 204, 204));
+        panelFondo.add(panelTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 600, 170));
 
         btnCalcular.setBackground(new java.awt.Color(21, 101, 192));
         btnCalcular.setMaximumSize(new java.awt.Dimension(240, 100));
@@ -189,10 +174,10 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Calcular");
+        jLabel6.setText("CalculaR");
         btnCalcular.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 30));
 
-        panelFondo.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 150, 30));
+        panelFondo.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 150, 30));
 
         add(panelFondo);
     }// </editor-fold>//GEN-END:initComponents
@@ -209,8 +194,8 @@ public class VistaMetodoGrafico extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelFondo;
-    private javax.swing.JPanel panelGrafica;
     public javax.swing.JPanel panelTabla;
+    private javax.swing.JPanel panelTabla1;
     public javax.swing.JTextField txtCalcularRestricciones;
     public javax.swing.JTextField txtRestricciones;
     public javax.swing.JTextField txtZ;

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import modelo.ModeloVistaPrincipal;
 import vista.VistaMetodoGrafico;
+import vista.VistaMetodoSimplex;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -35,6 +36,7 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
 
     private JPanel btnCerrarPrograma;
     private JPanel btnMetodoGrafico;
+    private JPanel btnMetodoSimplex;
     private int xMouse;
     private int yMouse;
 
@@ -63,12 +65,14 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
     public void mouseEntered(MouseEvent e) {
         colorFondoPanel(btnCerrarPrograma, rojoPrincipal, e);
         colorFondoPanel(btnMetodoGrafico, azulHover, e);
+        colorFondoPanel(btnMetodoSimplex, azulHover, e);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         colorFondoPanel(btnCerrarPrograma, grisOscuroHex, e);
         colorFondoPanel(btnMetodoGrafico, azulAcento, e);
+        colorFondoPanel(btnMetodoSimplex, azulAcento, e);
     }
 
     @Override
@@ -96,8 +100,11 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
     }
 
     public void cambiarPanel(MouseEvent e) {
-        if (e.getComponent().equals(modelo.getVista().btnMetodoGrafico)) {
+        if (e.getComponent().equals(btnMetodoGrafico)) {
             VistaMetodoGrafico vista = new VistaMetodoGrafico();
+            mostrarPanel(vista);
+        } else if (e.getComponent().equals(btnMetodoSimplex)) {
+            VistaMetodoSimplex vista = new VistaMetodoSimplex();
             mostrarPanel(vista);
         }
     }
@@ -112,6 +119,7 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
     public void windowOpened(WindowEvent e) {
         btnCerrarPrograma = modelo.getVista().btnCerrarPrograma;
         btnMetodoGrafico = modelo.getVista().btnMetodoGrafico;
+        btnMetodoSimplex = modelo.getVista().btnMetodoSimplex;
     }
 
     @Override

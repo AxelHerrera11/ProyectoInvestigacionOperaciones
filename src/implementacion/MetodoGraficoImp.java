@@ -1,6 +1,5 @@
 package implementacion;
 
-import controlador.ControladorMetodoGrafico;
 import interfaces.IMetodoGrafico;
 import java.awt.Color;
 import java.awt.Dimension;
