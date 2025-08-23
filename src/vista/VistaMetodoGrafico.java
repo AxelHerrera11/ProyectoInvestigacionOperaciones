@@ -9,11 +9,13 @@ import implementacion.MetodoGraficoImp;
 import implementacion.MetodoGraficoImp.PanelGrafico;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import modelo.ModeloMetodoGrafico;
 
@@ -22,13 +24,11 @@ import modelo.ModeloMetodoGrafico;
  * @author Omega03
  */
 public class VistaMetodoGrafico extends javax.swing.JPanel {
-     private MetodoGraficoImp metodoGrafico;
-    private PanelGrafico panelGrafico;
+ 
 
-    /**
-     * Creates new form VistaMetodoGrafico
-     */
-public VistaMetodoGrafico() {
+    public JPanel panelGrafico;
+
+    public VistaMetodoGrafico() {
         initComponents();
 
         // Inicializar modelo y controlador
@@ -36,16 +36,18 @@ public VistaMetodoGrafico() {
         ControladorMetodoGrafico controlador = new ControladorMetodoGrafico(modelo);
         setControlador(controlador);
 
-        // Crear el objeto MetodoGrafico y el panel gráfico
-        metodoGrafico = new MetodoGraficoImp();
-       panelGrafico = metodoGrafico.new PanelGrafico(metodoGrafico);
-
+        // Usar el panel gráfico que el controlador configuró
+        panelGrafico = modelo.getPanelGrafico();
+        panelGrafico.setPreferredSize(new Dimension(400, 400)); // Asegurar tamaño visible
 
         // Reemplazar jPanel2 por el panel personalizado
         jPanel2.setLayout(new BorderLayout());
         jPanel2.add(panelGrafico, BorderLayout.CENTER);
         jPanel2.revalidate();
         jPanel2.repaint();
+
+        // Opcional: agregar borde para confirmar visualmente
+        jPanel2.setBorder(BorderFactory.createLineBorder(Color.BLUE));
     }
 
  
@@ -66,11 +68,11 @@ public VistaMetodoGrafico() {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cmbTipo = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        txtZ = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtCalcularRestricciones = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtRestricciones = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -137,33 +139,33 @@ public VistaMetodoGrafico() {
             }
         });
 
-        jTextField1.setBackground(new java.awt.Color(244, 246, 248));
-        jTextField1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(36, 59, 85));
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
-        panelFondo.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 30));
+        txtZ.setBackground(new java.awt.Color(244, 246, 248));
+        txtZ.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtZ.setForeground(new java.awt.Color(36, 59, 85));
+        txtZ.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
+        panelFondo.add(txtZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 30));
 
         jLabel2.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(36, 59, 85));
         jLabel2.setText("Paso 2 - Graficar e identificar región factible");
         panelFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 540, -1));
 
-        jTextField2.setBackground(new java.awt.Color(244, 246, 248));
-        jTextField2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(36, 59, 85));
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
-        panelFondo.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 600, 30));
+        txtCalcularRestricciones.setBackground(new java.awt.Color(244, 246, 248));
+        txtCalcularRestricciones.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCalcularRestricciones.setForeground(new java.awt.Color(36, 59, 85));
+        txtCalcularRestricciones.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
+        panelFondo.add(txtCalcularRestricciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 600, 30));
 
         jLabel3.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(36, 59, 85));
         jLabel3.setText("Restricciones");
         panelFondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 150, 150, -1));
 
-        jTextField3.setBackground(new java.awt.Color(244, 246, 248));
-        jTextField3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(36, 59, 85));
-        jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
-        panelFondo.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 600, 30));
+        txtRestricciones.setBackground(new java.awt.Color(244, 246, 248));
+        txtRestricciones.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtRestricciones.setForeground(new java.awt.Color(36, 59, 85));
+        txtRestricciones.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
+        panelFondo.add(txtRestricciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 600, 30));
 
         jLabel4.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(36, 59, 85));
@@ -191,7 +193,7 @@ public VistaMetodoGrafico() {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Calcular owo");
-        btnCalcular.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 40));
+        btnCalcular.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         panelFondo.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 240, 40));
 
@@ -210,15 +212,17 @@ public VistaMetodoGrafico() {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    public javax.swing.JPanel jPanel3;
     private javax.swing.JPanel panelFondo;
+    public javax.swing.JTextField txtCalcularRestricciones;
+    public javax.swing.JTextField txtRestricciones;
+    public javax.swing.JTextField txtZ;
     // End of variables declaration//GEN-END:variables
 
    // Si tenés un setControlador, debería estar definido aquí
-    private void setControlador(ControladorMetodoGrafico controlador) {
-        // Implementa si hace falta asignar listeners
-    }
+public void setControlador(ControladorMetodoGrafico controlador) {
+    // Como es un JPanel (simulando botón), usamos MouseListener
+    this.btnCalcular.addMouseListener(controlador);
+}
+
 }
