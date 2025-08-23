@@ -153,8 +153,8 @@ public class MetodoGraficoImp implements IMetodoGrafico {
             Graphics2D g2 = (Graphics2D) g;
             int width = getWidth();
             int height = getHeight();
-            double maxX = 10;
-            double maxY = 10;
+            double maxX = 100;
+            double maxY = 100;
 
             // Ejes
             g2.setColor(Color.BLACK);
