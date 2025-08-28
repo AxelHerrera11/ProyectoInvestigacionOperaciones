@@ -177,7 +177,7 @@ public class VistaMetodoSimplex extends javax.swing.JPanel {
         jLabel6.setText("CalculaR");
         btnCalcular.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 30));
 
-        panelFondo.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 150, 30));
+        panelFondo.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 150, 30));
 
         add(panelFondo);
     }// </editor-fold>//GEN-END:initComponents

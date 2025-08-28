@@ -75,7 +75,7 @@
                   <Color blue="55" green="3b" red="24" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="M&#xe9;todo S&#xcd;MPLEX"/>
+                <Property name="text" type="java.lang.String" value="M&#xe9;todo Gr&#xe1;fico"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                     <MatteColorBorder bottom="2" left="0" right="0" top="0">
@@ -161,7 +161,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="55" green="3b" red="24" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Paso 2 - FORMAM EST&#xc1;NDAR A FORMA SIMPLEX"/>
+            <Property name="text" type="java.lang.String" value="Paso 2 - Graficar e identificar regi&#xf3;n factible"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -249,23 +249,23 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="55" green="3b" red="24" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Paso 3 - Prueba de optimalidad"/>
+            <Property name="text" type="java.lang.String" value="Paso 3 - Identificar puntos de intersecci&#xf3;n"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="480" width="510" height="-1"/>
+              <AbsoluteConstraints x="510" y="290" width="510" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Container class="javax.swing.JPanel" name="panelTabla1">
+        <Container class="javax.swing.JPanel" name="panelGrafica">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+              <Color blue="f8" green="f6" red="f4" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="320" width="600" height="140"/>
+              <AbsoluteConstraints x="20" y="330" width="370" height="370"/>
             </Constraint>
           </Constraints>
 
@@ -279,18 +279,18 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="55" green="3b" red="24" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Paso 1 - MODELO LINEAL A FORMAM EST&#xc1;NDAR"/>
+            <Property name="text" type="java.lang.String" value="Paso 1 - calcular restricciones"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="220" width="410" height="-1"/>
+              <AbsoluteConstraints x="20" y="220" width="370" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
         <Container class="javax.swing.JPanel" name="panelTabla">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+              <Color blue="f8" green="f6" red="f4" type="rgb"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -298,7 +298,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="510" width="600" height="170"/>
+              <AbsoluteConstraints x="510" y="330" width="370" height="370"/>
             </Constraint>
           </Constraints>
 
@@ -341,7 +341,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="CalculaR"/>
+                <Property name="text" type="java.lang.String" value="Calcular"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
