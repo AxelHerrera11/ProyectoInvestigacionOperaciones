@@ -206,7 +206,7 @@ private boolean esFactible(double x, double y, List<Restriccion> lista) {
 }
 
 public double[] extraerCoefsObjetivo(String funcion) {
-    // Acepta "Z=3x+5y", "3x+5y", "z = -2x + y", etc.
+    
     double cx = 0, cy = 0;
     if (funcion == null) return new double[]{cx, cy};
     String expr = funcion.replace(" ", "").toLowerCase(Locale.ROOT);
@@ -243,9 +243,7 @@ private double clampCero(double v) { return Math.abs(v) < 1e-9 ? 0.0 : v; }
 
 private double redondear(double v) { return Math.round(v * 100.0) / 100.0; } // 2 decimales
 
-// =========================================================
 // ================== MODELO RESTRICCIÓN =================
-// =========================================================
 public static class Restriccion {
     private final double a, b, rhs;
     private final String operador; // "<=", ">=", "="
