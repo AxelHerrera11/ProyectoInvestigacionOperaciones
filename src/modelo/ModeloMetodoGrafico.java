@@ -5,6 +5,7 @@
 package modelo;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -18,19 +19,20 @@ import vista.VistaMetodoGrafico;
 
 public class ModeloMetodoGrafico {
 
-        // Vista asociada
+    // Vista asociada
     private VistaMetodoGrafico vista;
 
     // Resultado óptimo
     private String resultadoOptimo;
 
     // Componentes de la vista
-    private JPanel btnCalcular;      // JPanel que actúa como botón
-    private JTextField txtRestriccion; // Campo para ingresar restricciones
-
+    private JPanel btnCalcular;         
+    private JTextField txtRestriccion;  
     private JPanel panelGrafico;    
     private JTextField txtCalcularRestricciones;
-// Panel donde se dibuja el gráfico
+    private JTextField txtFuncionObjetivo; // nuevo campo para Z
+    private JComboBox<String> comboBoxTipo; 
+    private JPanel panelTabla; 
 
     // ===== Constructores =====
     public ModeloMetodoGrafico() {}
@@ -41,62 +43,39 @@ public class ModeloMetodoGrafico {
 
         // Inicializar los componentes desde la vista
         this.txtRestriccion = vista.txtRestricciones;
-       
         this.btnCalcular = vista.btnCalcular;
         this.panelGrafico = vista.panelGrafico;
         this.txtCalcularRestricciones = vista.txtCalcularRestricciones;
-
+        this.txtFuncionObjetivo = vista.txtZ; // nuevo
+        this.comboBoxTipo = vista.cmbTipo; 
+        this.panelTabla = vista.panelTabla; 
     }
 
-    public JTextField getTxtCalcularRestricciones() {
-        return txtCalcularRestricciones;
-    }
-
-    public void setTxtCalcularRestricciones(JTextField txtCalcularRestricciones) {
-        this.txtCalcularRestricciones = txtCalcularRestricciones;
-    }
-
-    
     // ===== Getters y setters =====
-    public VistaMetodoGrafico getVista() {
-        return vista;
-    }
+    public VistaMetodoGrafico getVista() { return vista; }
+    public void setVista(VistaMetodoGrafico vista) { this.vista = vista; }
 
-    public void setVista(VistaMetodoGrafico vista) {
-        this.vista = vista;
-    }
+    public JPanel getBtnCalcular() { return btnCalcular; }
+    public void setBtnCalcular(JPanel btnCalcular) { this.btnCalcular = btnCalcular; }
 
-    public JPanel getBtnCalcular() {
-        return btnCalcular;
-    }
+    public JTextField getTxtRestriccion() { return txtRestriccion; }
+    public void setTxtRestriccion(JTextField txtRestriccion) { this.txtRestriccion = txtRestriccion; }
 
-    public void setBtnCalcular(JPanel btnCalcular) {
-        this.btnCalcular = btnCalcular;
-    }
+    public JPanel getPanelGrafico() { return panelGrafico; }
+    public void setPanelGrafico(JPanel panelGrafico) { this.panelGrafico = panelGrafico; }
 
-    public JTextField getTxtRestriccion() {
-        return txtRestriccion;
-    }
+    public JTextField getTxtCalcularRestricciones() { return txtCalcularRestricciones; }
+    public void setTxtCalcularRestricciones(JTextField txtCalcularRestricciones) { this.txtCalcularRestricciones = txtCalcularRestricciones; }
 
-    public void setTxtRestriccion(JTextField txtRestriccion) {
-        this.txtRestriccion = txtRestriccion;
-    }
+    public JTextField getTxtFuncionObjetivo() { return txtFuncionObjetivo; }
+    public void setTxtFuncionObjetivo(JTextField txtFuncionObjetivo) { this.txtFuncionObjetivo = txtFuncionObjetivo; }
 
-  
+    public JComboBox<String> getComboBoxTipo() { return comboBoxTipo; }
+    public void setComboBoxTipo(JComboBox<String> comboBoxTipo) { this.comboBoxTipo = comboBoxTipo; }
 
-    public JPanel getPanelGrafico() {
-        return panelGrafico;
-    }
+    public JPanel getPanelTabla() { return panelTabla; }
+    public void setPanelTabla(JPanel panelTabla) { this.panelTabla = panelTabla; }
 
-    public void setPanelGrafico(JPanel panelGrafico) {
-        this.panelGrafico = panelGrafico;
-    }
-
-    public String getResultadoOptimo() {
-        return resultadoOptimo;
-    }
-
-    public void setResultadoOptimo(String resultadoOptimo) {
-        this.resultadoOptimo = resultadoOptimo;
-    }
+    public String getResultadoOptimo() { return resultadoOptimo; }
+    public void setResultadoOptimo(String resultadoOptimo) { this.resultadoOptimo = resultadoOptimo; }
 }

@@ -11,7 +11,7 @@ public interface IMetodoGrafico {
     void setFuncionObjetivo(String funcion);
 
     // Resolver el modelo (calcular intersecciones, región factible, etc.)
-    void resolver();
+    void resolver(String tipo);
 
     // Devolver las restricciones registradas
     List<String> getRestricciones();
