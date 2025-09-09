@@ -4,17 +4,15 @@
  */
 package vista;
 
-import controlador.ControladorMetodoGrafico;
-import java.awt.BorderLayout;
+import controlador.ControladorMetodoSimplex;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicComboBoxUI;
-import modelo.ModeloMetodoGrafico;
+import modelo.ModeloMetodoSimplex;
 
 /**
  *
@@ -29,7 +27,9 @@ public class VistaMetodoSimplex extends javax.swing.JPanel {
         initComponents();
 
         // Inicializar modelo y controlador
- 
+        ModeloMetodoSimplex modelo = new ModeloMetodoSimplex(this);
+        ControladorMetodoSimplex controlador = new ControladorMetodoSimplex(modelo);
+        setControlador(controlador);
     }
 
  
@@ -56,11 +56,12 @@ public class VistaMetodoSimplex extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtRestricciones = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        panelTabla1 = new javax.swing.JPanel();
+        panelTablaFormaSimplex = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        panelTabla = new javax.swing.JPanel();
         btnCalcular = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        panelTablaPruebaOptimalidad = new javax.swing.JPanel();
 
         setMaximumSize(new java.awt.Dimension(1040, 720));
         setMinimumSize(new java.awt.Dimension(1040, 720));
@@ -154,16 +155,14 @@ public class VistaMetodoSimplex extends javax.swing.JPanel {
         jLabel4.setText("Paso 3 - Prueba de optimalidad");
         panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 510, -1));
 
-        panelTabla1.setBackground(new java.awt.Color(204, 204, 204));
-        panelFondo.add(panelTabla1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 600, 140));
+        panelTablaFormaSimplex.setBackground(new java.awt.Color(204, 204, 204));
+        panelTablaFormaSimplex.setLayout(new javax.swing.BoxLayout(panelTablaFormaSimplex, javax.swing.BoxLayout.Y_AXIS));
+        panelFondo.add(panelTablaFormaSimplex, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 600, 140));
 
         jLabel5.setFont(new java.awt.Font("60s Scoreboard", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(36, 59, 85));
         jLabel5.setText("Paso 1 - MODELO LINEAL A FORMAM ESTÁNDAR");
         panelFondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 410, -1));
-
-        panelTabla.setBackground(new java.awt.Color(204, 204, 204));
-        panelFondo.add(panelTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 600, 170));
 
         btnCalcular.setBackground(new java.awt.Color(21, 101, 192));
         btnCalcular.setMaximumSize(new java.awt.Dimension(240, 100));
@@ -179,6 +178,12 @@ public class VistaMetodoSimplex extends javax.swing.JPanel {
 
         panelFondo.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 150, 30));
 
+        panelTablaPruebaOptimalidad.setBackground(new java.awt.Color(204, 204, 204));
+        panelTablaPruebaOptimalidad.setLayout(new javax.swing.BoxLayout(panelTablaPruebaOptimalidad, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(panelTablaPruebaOptimalidad);
+
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 600, 170));
+
         add(panelFondo);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -193,16 +198,17 @@ public class VistaMetodoSimplex extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    public javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelFondo;
-    public javax.swing.JPanel panelTabla;
-    private javax.swing.JPanel panelTabla1;
+    public javax.swing.JPanel panelTablaFormaSimplex;
+    public javax.swing.JPanel panelTablaPruebaOptimalidad;
     public javax.swing.JTextField txtCalcularRestricciones;
     public javax.swing.JTextField txtRestricciones;
     public javax.swing.JTextField txtZ;
     // End of variables declaration//GEN-END:variables
 
    // Si tenés un setControlador, debería estar definido aquí
-public void setControlador(ControladorMetodoGrafico controlador) {
+public void setControlador(ControladorMetodoSimplex controlador) {
     // Como es un JPanel (simulando botón), usamos MouseListener
     this.btnCalcular.addMouseListener(controlador);
 }
