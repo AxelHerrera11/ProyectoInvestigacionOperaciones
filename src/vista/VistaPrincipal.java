@@ -65,6 +65,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnMetodoSimplex = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        btnMetodoHola = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         contenedor = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         barraMovimiento = new javax.swing.JPanel();
@@ -139,6 +141,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btnMetodoSimplex.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 40));
 
         menu.add(btnMetodoSimplex, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 240, 40));
+
+        btnMetodoHola.setBackground(new java.awt.Color(21, 101, 192));
+        btnMetodoHola.setMaximumSize(new java.awt.Dimension(240, 100));
+        btnMetodoHola.setMinimumSize(new java.awt.Dimension(240, 100));
+        btnMetodoHola.setPreferredSize(new java.awt.Dimension(240, 100));
+        btnMetodoHola.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Método HOLA");
+        btnMetodoHola.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 40));
+
+        menu.add(btnMetodoHola, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 240, 40));
 
         split.setLeftComponent(menu);
 
@@ -249,6 +265,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     public javax.swing.JPanel barraMovimiento;
     public javax.swing.JPanel btnCerrarPrograma;
     public javax.swing.JPanel btnMetodoGrafico;
+    public javax.swing.JPanel btnMetodoHola;
     public javax.swing.JPanel btnMetodoSimplex;
     public javax.swing.JPanel contenedor;
     private javax.swing.JPanel fondoPrincipal;
@@ -259,6 +276,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel menu;
     private javax.swing.JSplitPane split;
@@ -267,6 +285,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     public void setControlador(ControladorVistaPrincipal controlador) {
         this.btnMetodoGrafico.addMouseListener(controlador);
         this.btnMetodoSimplex.addMouseListener(controlador);
+        this.btnMetodoHola.addMouseListener(controlador);
         this.btnCerrarPrograma.addMouseListener(controlador);
         this.barraMovimiento.addMouseListener(controlador);
         this.barraMovimiento.addMouseMotionListener(controlador);
