@@ -237,10 +237,10 @@ public class MetodoSimplexImp implements IMetodoSimplex{
         for (int i = 1; i < baseVars.length; i++) {
             String var = baseVars[i];
             int idx = Integer.parseInt(var.substring(1)) - 1;
-            data[0][idx] = tableau[i][tableau[0].length - 1];
+            data[0][idx] = String.format("%.2f", tableau[i][tableau[0].length - 1]);
         }
 
-        data[0][totalVars] = tableau[0][tableau[0].length - 1];
+        data[0][totalVars] = String.format("%.2f",tableau[0][tableau[0].length - 1]);
         return new DefaultTableModel(data, colNames);
     }
 

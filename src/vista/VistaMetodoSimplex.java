@@ -62,6 +62,9 @@ public class VistaMetodoSimplex extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         panelTablaPruebaOptimalidad = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblRespuestas = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1040, 720));
         setMinimumSize(new java.awt.Dimension(1040, 720));
@@ -182,7 +185,20 @@ public class VistaMetodoSimplex extends javax.swing.JPanel {
         panelTablaPruebaOptimalidad.setLayout(new javax.swing.BoxLayout(panelTablaPruebaOptimalidad, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(panelTablaPruebaOptimalidad);
 
-        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 600, 170));
+        panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 600, 170));
+
+        jScrollPane2.setBackground(new java.awt.Color(204, 204, 204));
+
+        tblRespuestas.setBackground(new java.awt.Color(204, 204, 204));
+        tblRespuestas.setLayout(new javax.swing.BoxLayout(tblRespuestas, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane2.setViewportView(tblRespuestas);
+
+        panelFondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, 380, 170));
+
+        jLabel7.setFont(new java.awt.Font("60s Scoreboard", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(36, 59, 85));
+        jLabel7.setText("Respuestas");
+        panelFondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, 290, -1));
 
         add(panelFondo);
     }// </editor-fold>//GEN-END:initComponents
@@ -197,11 +213,14 @@ public class VistaMetodoSimplex extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel panelFondo;
     public javax.swing.JPanel panelTablaFormaSimplex;
     public javax.swing.JPanel panelTablaPruebaOptimalidad;
+    public javax.swing.JPanel tblRespuestas;
     public javax.swing.JTextField txtCalcularRestricciones;
     public javax.swing.JTextField txtRestricciones;
     public javax.swing.JTextField txtZ;

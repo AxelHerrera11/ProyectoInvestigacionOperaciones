@@ -75,6 +75,13 @@ public class ControladorMetodoSimplex implements MouseListener {
             modelo.getVista().panelTablaPruebaOptimalidad.revalidate();
             modelo.getVista().panelTablaPruebaOptimalidad.repaint();
         }
+        
+        JTable tablaRespuestas = new JTable(implementacion.tablaFinal());
+        ajustarTamañoTabla(tablaRespuestas);
+        JScrollPane scrollTR = new JScrollPane(tablaRespuestas);
+        modelo.getVista().tblRespuestas.add(scrollTR);
+        modelo.getVista().tblRespuestas.revalidate();
+        modelo.getVista().tblRespuestas.repaint();
     }
 
 }
