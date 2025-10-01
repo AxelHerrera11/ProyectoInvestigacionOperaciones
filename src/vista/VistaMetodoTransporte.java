@@ -5,35 +5,98 @@
 package vista;
 
 import controlador.ControladorMetodoGrafico;
+import controlador.ControladorMetodoSimplex;
+import controlador.ControladorMetodoTransporte;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Rectangle;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import modelo.ModeloMetodoGrafico;
+import modelo.ModeloMetodoSimplex;
 
 /**
  *
  * @author Omega03
  */
-public class VistaMetodoHola extends javax.swing.JPanel {
+public class VistaMetodoTransporte extends javax.swing.JPanel {
  
 
     public JPanel panelGrafico;
+   
 
-    public VistaMetodoHola() {
+    public VistaMetodoTransporte() {
         initComponents();
+        ControladorMetodoTransporte controlador = new ControladorMetodoTransporte(this);
+        setControlador(controlador);
 
-        // Inicializar modelo y controlador
  
     }
 
- 
+ public void mostrarDatosDeEntrada(int[][] costos, int[] oferta, int[] demanda) {
+    // Si usas el constructor de tu vista para crear el controlador, 
+    // asegúrate de que estas importaciones están al inicio del archivo:
+    // import java.awt.Color;
+    // import java.awt.GridLayout;
+    // import javax.swing.JLabel;
+    // import javax.swing.BorderFactory;
+    // import javax.swing.SwingConstants;
+    
+    panelTabla.removeAll();
+    
+    int filas = costos.length;
+    int columnas = costos[0].length;
+    
+    // Cuadrícula: (Filas de Costos + 2) x (Columnas de Destinos + 2)
+    panelTabla.setLayout(new GridLayout(filas + 2, columnas + 2, 2, 2));
 
+    // Fila 1: Encabezados de Destinos
+    panelTabla.add(crearEtiqueta(" ", Color.LIGHT_GRAY, Color.BLACK));
+    for (int j = 0; j < columnas; j++) {
+        panelTabla.add(crearEtiqueta("D" + (j + 1), Color.LIGHT_GRAY, Color.BLACK));
+    }
+    panelTabla.add(crearEtiqueta("Oferta", Color.DARK_GRAY, Color.WHITE));
+
+    // Filas de Costos y Oferta
+    for (int i = 0; i < filas; i++) {
+        panelTabla.add(crearEtiqueta("F" + (i + 1), Color.LIGHT_GRAY, Color.BLACK));
+        // Celdas de Costos (el cuerpo de la tabla)
+        for (int j = 0; j < columnas; j++) {
+            panelTabla.add(crearEtiqueta(String.valueOf(costos[i][j]), Color.WHITE, Color.BLACK));
+        }
+        // Valor de Oferta
+        panelTabla.add(crearEtiqueta(String.valueOf(oferta[i]), new Color(153, 204, 255), Color.BLACK)); 
+    }
+    
+    // Última Fila: Demanda
+    panelTabla.add(crearEtiqueta("Demanda", Color.DARK_GRAY, Color.WHITE));
+    for (int j = 0; j < columnas; j++) {
+        panelTabla.add(crearEtiqueta(String.valueOf(demanda[j]), new Color(255, 153, 153), Color.BLACK)); 
+    }
+    panelTabla.add(crearEtiqueta("Total", Color.DARK_GRAY, Color.WHITE)); // Celda inferior derecha
+
+    panelTabla.revalidate();
+    panelTabla.repaint();
+}
+
+/**
+ * Método auxiliar para crear una JLabel con estilo.
+ */
+private JLabel crearEtiqueta(String texto, Color fondo, Color textoColor) {
+    JLabel label = new JLabel(texto, SwingConstants.CENTER);
+    label.setOpaque(true);
+    label.setBackground(fondo);
+    label.setForeground(textoColor);
+    label.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+    return label;
+}
     
 
 
@@ -86,7 +149,7 @@ public class VistaMetodoHola extends javax.swing.JPanel {
         cmbTipo.setBackground(new java.awt.Color(244, 246, 248));
         cmbTipo.setFont(new java.awt.Font("60s Scoreboard", 1, 12)); // NOI18N
         cmbTipo.setForeground(new java.awt.Color(36, 59, 85));
-        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Costo Mínimo", "Esquina Noroeste" }));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Costo Mínimo", "Esquina Noroeste", "Aproximación de Vogel" }));
         cmbTipo.setToolTipText("");
         cmbTipo.setBorder(null);
         panelFondo.add(cmbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 170, 30));
@@ -138,7 +201,6 @@ public class VistaMetodoHola extends javax.swing.JPanel {
 
         panelFondo.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, 150, 30));
 
-        txtDatos.setBackground(new java.awt.Color(255, 255, 255));
         txtDatos.setColumns(20);
         txtDatos.setRows(5);
         jScrollPane1.setViewportView(txtDatos);
@@ -169,16 +231,63 @@ public class VistaMetodoHola extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelFondo;
-    private javax.swing.JPanel panelTabla;
+    public javax.swing.JPanel panelTabla;
     public javax.swing.JPanel panelTablaResultados;
     public javax.swing.JTextArea txtDatos;
     public javax.swing.JTextField txtResultado;
     // End of variables declaration//GEN-END:variables
 
-   // Si tenés un setControlador, debería estar definido aquí
-public void setControlador(ControladorMetodoGrafico controlador) {
-    // Como es un JPanel (simulando botón), usamos MouseListener
-    this.btnCalcular.addMouseListener(controlador);
-}
+ public void setControlador(ControladorMetodoTransporte controlador) {
+      // btnCalcular es un JPanel, no un JButton, así que usamos MouseListener
+      this.btnCalcular.addMouseListener(controlador);
+    }
 
+
+    // Mostrar la tabla de asignación en el panel
+    public void mostrarTabla(int[][] asignacion) {
+        panelTablaResultados.removeAll();
+        int filas = asignacion.length;
+        int columnas = asignacion[0].length;
+        panelTablaResultados.setLayout(new GridLayout(filas, columnas, 2, 2));
+
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                JLabel celda = new JLabel(String.valueOf(asignacion[i][j]), SwingConstants.CENTER);
+                celda.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                panelTablaResultados.add(celda);
+            }
+        }
+
+        panelTablaResultados.revalidate();
+        panelTablaResultados.repaint();
+    }
+
+   // Dentro de VistaMetodoTransporte.java
+
+// Dentro de VistaMetodoTransporte.java
+
+public void mostrarResultado(int[][] asignacion, int[][] costosOriginales) {
+    long costoTotal = 0;
+    
+    // Aseguramos que las matrices no estén vacías
+    if (asignacion == null || asignacion.length == 0 || costosOriginales == null || costosOriginales.length == 0) {
+        txtResultado.setText("Error: No hay asignaciones o costos.");
+        return;
+    }
+    
+    int filas = asignacion.length;
+    int columnas = asignacion[0].length;
+    
+    // El costo total es la suma de (Asignación * Costo) para cada celda.
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            // Utilizamos 'long' para evitar desbordamiento, aunque no debería ocurrir aquí.
+            costoTotal += (long)asignacion[i][j] * costosOriginales[i][j];
+        }
+    }
+    
+    // Mostrar el resultado en el campo de texto.
+    // Confirma que 'txtResultado' es el nombre correcto de tu campo de texto.
+    txtResultado.setText("Costo Total: " + costoTotal);
+}
 }

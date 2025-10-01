@@ -8,7 +8,7 @@ import vista.VistaMetodoSimplex;
 
 import javax.swing.*;
 import java.awt.event.*;
-import vista.VistaMetodoHola;
+import vista.VistaMetodoTransporte;
 
 public class ControladorVistaPrincipal implements MouseListener, MouseMotionListener, WindowListener {
 
@@ -111,7 +111,7 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
             VistaMetodoSimplex vista = new VistaMetodoSimplex();
             mostrarPanel(vista);
         } else if (e.getComponent().equals(btnMetodoHola)) {
-            VistaMetodoHola vista = new VistaMetodoHola();
+            VistaMetodoTransporte vista = new VistaMetodoTransporte();
             mostrarPanel(vista);
         }
     }
