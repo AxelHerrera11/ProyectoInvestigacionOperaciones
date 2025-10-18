@@ -90,19 +90,19 @@ public class VistaMetodoAsignacion extends javax.swing.JPanel {
         jLabel3.setText("Columnas:");
         panelFondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 90, -1));
 
-        panelProceso.setBackground(new java.awt.Color(204, 204, 204));
+        panelProceso.setBackground(new java.awt.Color(244, 246, 248));
         panelProceso.setLayout(new javax.swing.BoxLayout(panelProceso, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(panelProceso);
 
         panelFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 590, 350));
 
-        panelResultado.setBackground(new java.awt.Color(204, 204, 204));
+        panelResultado.setBackground(new java.awt.Color(244, 246, 248));
         panelResultado.setLayout(new javax.swing.BoxLayout(panelResultado, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane2.setViewportView(panelResultado);
 
-        panelFondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 340, 260, 350));
+        panelFondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 340, 380, 160));
 
-        panelTabla.setBackground(new java.awt.Color(204, 204, 204));
+        panelTabla.setBackground(new java.awt.Color(244, 246, 248));
         panelTabla.setLayout(new javax.swing.BoxLayout(panelTabla, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane3.setViewportView(panelTabla);
 
@@ -123,7 +123,7 @@ public class VistaMetodoAsignacion extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("60s Scoreboard", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(36, 59, 85));
         jLabel4.setText("Resultado:");
-        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, 100, -1));
+        panelFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 320, 100, -1));
 
         jLabel5.setFont(new java.awt.Font("60s Scoreboard", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(36, 59, 85));

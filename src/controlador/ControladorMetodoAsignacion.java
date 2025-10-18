@@ -2,6 +2,7 @@ package controlador;
 
 import implementacion.MetodoAsignacionImp;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import modelo.ModeloMetodoAsignacion;
@@ -33,10 +34,21 @@ public class ControladorMetodoAsignacion implements MouseListener {
         }
     }
 
-    @Override public void mousePressed(MouseEvent e) {}
-    @Override public void mouseReleased(MouseEvent e) {}
-    @Override public void mouseEntered(MouseEvent e) {}
-    @Override public void mouseExited(MouseEvent e) {}
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
 
     // ---------------- LÓGICA DE DATOS ---------------- //
     private void generarTablaEntrada() {
@@ -114,12 +126,18 @@ public class ControladorMetodoAsignacion implements MouseListener {
             }
 
             // --- Llamar a la implementación ---
-            MetodoAsignacionImp.ResultadoAsignacion resultado =
-                    implementacion.calcularAsignacion(matrizCostos, encabezadosFilas, encabezadosColumnas);
+            MetodoAsignacionImp.ResultadoAsignacion resultado
+                    = implementacion.calcularAsignacion(matrizCostos, encabezadosFilas, encabezadosColumnas);
 
             // --- Mostrar resultados ---
             mostrarTablasProceso(resultado.tablasProceso);
             mostrarResultadoAsignacion(resultado.tablaResultado);
+            mostrarAsignacionFinalTabla(
+                    resultado.asignacionFinal,
+                    encabezadosFilas,
+                    encabezadosColumnas,
+                    matrizCostos
+            );
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(modelo.getVista(),
@@ -139,6 +157,7 @@ public class ControladorMetodoAsignacion implements MouseListener {
         int paso = 1;
         for (DefaultTableModel model : tablasProceso) {
             JTable tabla = new JTable(model);
+            ajustarTamañoTabla(tabla);
             JPanel contenedor = new JPanel(new BorderLayout());
             contenedor.setBorder(BorderFactory.createTitledBorder("Paso " + paso));
             contenedor.add(new JScrollPane(tabla), BorderLayout.CENTER);
@@ -152,9 +171,43 @@ public class ControladorMetodoAsignacion implements MouseListener {
     }
 
     private void mostrarResultadoAsignacion(DefaultTableModel modeloResultado) {
-        modelo.getVista().panelResultado.removeAll();
         JTable tabla = new JTable(modeloResultado);
-        modelo.getVista().panelResultado.add(new JScrollPane(tabla), BorderLayout.CENTER);
+        ajustarTamañoTabla(tabla);
+        modelo.getVista().panelProceso.add(new JScrollPane(tabla), BorderLayout.CENTER);
+        modelo.getVista().panelProceso.revalidate();
+        modelo.getVista().panelProceso.repaint();
+    }
+
+    private void ajustarTamañoTabla(JTable tabla) {
+        int rowHeight = tabla.getRowHeight();
+        int rowCount = tabla.getRowCount();
+        int headerHeight = tabla.getTableHeader().getPreferredSize().height;
+
+        int alturaTotal = (rowHeight * rowCount) + headerHeight;
+        tabla.setPreferredScrollableViewportSize(new Dimension(tabla.getPreferredSize().width, alturaTotal));
+    }
+
+    private void mostrarAsignacionFinalTabla(int[] asignaciones, String[] filas, String[] columnas, int[][] matrizCostos) {
+        // Crear modelo de tabla
+        String[] encabezados = {"E", "T", "Costo"};
+        DefaultTableModel modeloFinal = new DefaultTableModel(encabezados, 0);
+
+        for (int i = 0; i < asignaciones.length; i++) {
+            int col = asignaciones[i];
+            if (col != -1) {
+                Object[] fila = {filas[i], columnas[col], matrizCostos[i][col]};
+                modeloFinal.addRow(fila);
+            }
+        }
+
+        // Crear JTable y contenedor
+        JTable tablaFinal = new JTable(modeloFinal);
+        JPanel contenedor = new JPanel(new BorderLayout());
+        contenedor.setBorder(BorderFactory.createTitledBorder("Asignación Final"));
+        contenedor.add(new JScrollPane(tablaFinal), BorderLayout.CENTER);
+
+        // Agregar al panelResultado debajo de la tabla final
+        modelo.getVista().panelResultado.add(contenedor);
         modelo.getVista().panelResultado.revalidate();
         modelo.getVista().panelResultado.repaint();
     }

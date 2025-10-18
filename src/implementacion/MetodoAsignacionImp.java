@@ -32,8 +32,8 @@ public class MetodoAsignacionImp {
             int min = Arrays.stream(costos[i]).min().orElse(0);
             for (int j = 0; j < m; j++) costos[i][j] -= min;
         }
-        int[] asign = intentarAsignar(costos);
         tablas.add(crearModeloTabla(costos, nombresFilas, nombresColumnas, "Paso 1: Resta mínima por fila"));
+        int[] asign = asignarOptimamente(costos);
         asignacionesPaso.add(asign.clone());
 
         // --- PASO 2: Resta mínima por columna ---
@@ -42,22 +42,21 @@ public class MetodoAsignacionImp {
             for (int i = 0; i < n; i++) if (costos[i][j] < min) min = costos[i][j];
             for (int i = 0; i < n; i++) costos[i][j] -= min;
         }
-        asign = intentarAsignar(costos);
         tablas.add(crearModeloTabla(costos, nombresFilas, nombresColumnas, "Paso 2: Resta mínima por columna"));
+        asign = asignarOptimamente(costos);
         asignacionesPaso.add(asign.clone());
 
-        // --- PASOS SIGUIENTES: hasta poder asignar todos ---
+        // --- PASOS ADICIONALES ---
         while (!asignacionCompleta(asign)) {
-            boolean[] filaMarcada = new boolean[n];
-            boolean[] columnaMarcada = new boolean[m];
-            marcarLineasMinimas(costos, asign, filaMarcada, columnaMarcada);
-
+            int[] lineas = cubrirCeros(costos, asign);
             int minNoCubierto = Integer.MAX_VALUE;
+
             for (int i = 0; i < n; i++) {
-                if (!filaMarcada[i]) {
+                if (lineas[i] == 0) { // fila no cubierta
                     for (int j = 0; j < m; j++) {
-                        if (!columnaMarcada[j] && costos[i][j] < minNoCubierto)
+                        if (lineas[n + j] == 0 && costos[i][j] < minNoCubierto) {
                             minNoCubierto = costos[i][j];
+                        }
                     }
                 }
             }
@@ -65,65 +64,82 @@ public class MetodoAsignacionImp {
             // Ajuste de matriz
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
-                    if (!filaMarcada[i] && !columnaMarcada[j]) costos[i][j] -= minNoCubierto;
-                    else if (filaMarcada[i] && columnaMarcada[j]) costos[i][j] += minNoCubierto;
+                    if (lineas[i] == 0 && lineas[n + j] == 0) costos[i][j] -= minNoCubierto;
+                    else if (lineas[i] == 1 && lineas[n + j] == 1) costos[i][j] += minNoCubierto;
                 }
             }
 
-            asign = intentarAsignar(costos);
             tablas.add(crearModeloTabla(costos, nombresFilas, nombresColumnas, "Ajuste adicional"));
+            asign = asignarOptimamente(costos);
             asignacionesPaso.add(asign.clone());
         }
 
-        // --- PASO FINAL: tabla de resultado ---
+        // --- RESULTADO FINAL ---
         DefaultTableModel tablaFinal = crearModeloTabla(costos, nombresFilas, nombresColumnas, "Resultado final");
         aplicarResaltadoAsignaciones(tablaFinal, asign);
 
         return new ResultadoAsignacion(tablas, asignacionesPaso, tablaFinal, asign);
     }
 
-    // ---------------------------------------------------------------------
-    // 🧮 MÉTODOS AUXILIARES
-    // ---------------------------------------------------------------------
+    // ========================== AUXILIARES ============================= //
 
     private int[][] copiarMatriz(int[][] original) {
         int[][] copia = new int[original.length][];
-        for (int i = 0; i < original.length; i++)
-            copia[i] = original[i].clone();
+        for (int i = 0; i < original.length; i++) copia[i] = original[i].clone();
         return copia;
     }
 
-    // Intenta asignar ceros únicos en cada fila sin repetir columnas
-    private int[] intentarAsignar(int[][] matriz) {
+    private boolean asignacionCompleta(int[] asignacion) {
+        for (int a : asignacion) if (a == -1) return false;
+        return true;
+    }
+
+    private int[] asignarOptimamente(int[][] matriz) {
         int n = matriz.length;
         int m = matriz[0].length;
         int[] asignacion = new int[n];
         Arrays.fill(asignacion, -1);
-        boolean[] columnasOcupadas = new boolean[m];
 
+        boolean[] columnasUsadas = new boolean[m];
+
+        // Buscar ceros únicos por fila (más seguro que el original)
         for (int i = 0; i < n; i++) {
+            List<Integer> ceros = new ArrayList<>();
             for (int j = 0; j < m; j++) {
-                if (matriz[i][j] == 0 && !columnasOcupadas[j]) {
-                    asignacion[i] = j;
-                    columnasOcupadas[j] = true;
-                    break;
+                if (matriz[i][j] == 0 && !columnasUsadas[j]) ceros.add(j);
+            }
+            if (ceros.size() == 1) {
+                int col = ceros.get(0);
+                asignacion[i] = col;
+                columnasUsadas[col] = true;
+            }
+        }
+
+        // Asignar los ceros restantes si quedan filas libres
+        for (int i = 0; i < n; i++) {
+            if (asignacion[i] == -1) {
+                for (int j = 0; j < m; j++) {
+                    if (matriz[i][j] == 0 && !columnasUsadas[j]) {
+                        asignacion[i] = j;
+                        columnasUsadas[j] = true;
+                        break;
+                    }
                 }
             }
         }
+
         return asignacion;
     }
 
-    private boolean asignacionCompleta(int[] asignacion) {
-        for (int x : asignacion) if (x == -1) return false;
-        return true;
-    }
+    // Cubre los ceros según el algoritmo húngaro
+    private int[] cubrirCeros(int[][] matriz, int[] asignacion) {
+        int n = matriz.length, m = matriz[0].length;
+        int[] lineas = new int[n + m]; // filas + columnas
+        boolean[] filaMarcada = new boolean[n];
+        boolean[] colMarcada = new boolean[m];
 
-    private void marcarLineasMinimas(int[][] matriz, int[] asignacion, boolean[] filaMarcada, boolean[] columnaMarcada) {
-        int n = matriz.length;
-        int m = matriz[0].length;
-
-        // Marcar filas sin asignación
-        for (int i = 0; i < n; i++) if (asignacion[i] == -1) filaMarcada[i] = true;
+        for (int i = 0; i < n; i++)
+            if (asignacion[i] == -1) filaMarcada[i] = true;
 
         boolean cambio;
         do {
@@ -131,31 +147,33 @@ public class MetodoAsignacionImp {
             for (int i = 0; i < n; i++) {
                 if (filaMarcada[i]) {
                     for (int j = 0; j < m; j++) {
-                        if (matriz[i][j] == 0 && !columnaMarcada[j]) {
-                            columnaMarcada[j] = true;
+                        if (matriz[i][j] == 0 && !colMarcada[j]) {
+                            colMarcada[j] = true;
                             cambio = true;
                         }
                     }
                 }
             }
-
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
-                    if (columnaMarcada[j] && asignacion[i] == j && !filaMarcada[i]) {
+                    if (colMarcada[j] && asignacion[i] == j && !filaMarcada[i]) {
                         filaMarcada[i] = true;
                         cambio = true;
                     }
                 }
             }
         } while (cambio);
+
+        for (int i = 0; i < n; i++) lineas[i] = filaMarcada[i] ? 0 : 1;
+        for (int j = 0; j < m; j++) lineas[n + j] = colMarcada[j] ? 1 : 0;
+
+        return lineas;
     }
 
-    // Crea una tabla visual para cada paso
     private DefaultTableModel crearModeloTabla(int[][] matriz, String[] filas, String[] columnas, String titulo) {
         String[] nombres = new String[columnas.length + 1];
         nombres[0] = titulo;
         System.arraycopy(columnas, 0, nombres, 1, columnas.length);
-
         DefaultTableModel modelo = new DefaultTableModel(nombres, 0);
         for (int i = 0; i < filas.length; i++) {
             Object[] fila = new Object[columnas.length + 1];
@@ -166,13 +184,12 @@ public class MetodoAsignacionImp {
         return modelo;
     }
 
-    // Resalta visualmente las celdas asignadas (para la tabla final)
     private void aplicarResaltadoAsignaciones(DefaultTableModel modelo, int[] asignaciones) {
         for (int i = 0; i < asignaciones.length; i++) {
             int col = asignaciones[i];
             if (col != -1) {
                 Object valor = modelo.getValueAt(i, col + 1);
-                modelo.setValueAt("[" + valor + "]", i, col + 1); // Agrega corchetes para marcar asignado
+                modelo.setValueAt("[" + valor + "]", i, col + 1);
             }
         }
     }
