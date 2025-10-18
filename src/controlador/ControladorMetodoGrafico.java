@@ -6,6 +6,8 @@ package controlador;
 
 import implementacion.MetodoGraficoImp;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -79,7 +81,7 @@ private void calcularResultado() {
     // Limpiar restricciones anteriores
     metodoGrafico.limpiarRestricciones();
 
-    // Procesar restricciones
+    // 2) Procesar restricciones (acepta separadores: nueva línea, coma o punto y coma)
     String[] restricciones = textoRestricciones.split("[\\n,;]+");
     StringBuilder resultadoTexto = new StringBuilder();
     for (String restriccion : restricciones) {
@@ -94,8 +96,8 @@ private void calcularResultado() {
         boolean tieneX = r.getXIntercept() != null;
         boolean tieneY = r.getYIntercept() != null;
         if (tieneX && tieneY) {
-            resultadoTexto.append("(").append(r.getXIntercept()).append(",0) y (0,")
-                          .append(r.getYIntercept()).append(")");
+            resultadoTexto.append("(").append(r.getXIntercept())
+                          .append(",0) y (0,").append(r.getYIntercept()).append(")");
         } else if (tieneX) {
             resultadoTexto.append("(").append(r.getXIntercept()).append(",0)");
         } else if (tieneY) {
@@ -104,52 +106,68 @@ private void calcularResultado() {
         resultadoTexto.append("\n");
     }
 
-    // Mostrar restricciones procesadas
+    // Mostrar resumen de restricciones en el área correspondiente
     if (modelo.getTxtCalcularRestricciones() != null) {
         modelo.getTxtCalcularRestricciones().setText(resultadoTexto.toString());
     }
 
-    // 2) Obtener los vértices factibles
+    // 3) Obtener vértices factibles
     List<double[]> vertices = metodoGrafico.getVerticesFactibles();
 
-    // 3) Obtener función objetivo Z
+    // 4) Función objetivo Z
     String funcionZ = "";
     if (modelo.getTxtFuncionObjetivo() != null) {
         funcionZ = modelo.getTxtFuncionObjetivo().getText().trim();
     }
+    double[] coefs = metodoGrafico.extraerCoefsObjetivo(funcionZ);
 
-    // 4) Calcular tabla de vértices con Z
+    // 5) Construir tabla de evaluación Z en vértices
     DefaultTableModel tablaVertices = metodoGrafico.calcularZEnVertices(funcionZ, vertices);
     modelo.setResultadoOptimo(metodoGrafico.getResultadoOptimo());
 
-    // 5) Mostrar tabla y mensaje en panelTabla
+    // 6) Mostrar tabla y resultado en el panel de tabla
     if (modelo.getPanelTabla() != null) {
         modelo.getPanelTabla().removeAll();
         JTable tabla = new JTable(tablaVertices);
         JScrollPane scroll = new JScrollPane(tabla);
         JLabel lblPuntoOptimo = new JLabel();
         lblPuntoOptimo.setHorizontalAlignment(SwingConstants.CENTER);
+        lblPuntoOptimo.setFont(lblPuntoOptimo.getFont().deriveFont(Font.PLAIN, 12f));
+        lblPuntoOptimo.setForeground(Color.DARK_GRAY);
 
-        // ===== Calcular punto óptimo según comboBox =====
-        if (modelo.getComboBoxTipo() != null && vertices.size() > 0) {
+        // ===== Calcular punto óptimo según comboBox (con detección de NO ACOTADO) =====
+        if (modelo.getComboBoxTipo() != null && !funcionZ.isEmpty()) {
             String tipo = (String) modelo.getComboBoxTipo().getSelectedItem();
-            double mejorZ = tipo.equalsIgnoreCase("Maximizar") ? Double.NEGATIVE_INFINITY : Double.POSITIVE_INFINITY;
-            double[] puntoOptimo = null;
-            for (double[] p : vertices) {
-                double[] coefs = metodoGrafico.extraerCoefsObjetivo(funcionZ);
-                double z = coefs[0] * p[0] + coefs[1] * p[1];
-                if (tipo.equalsIgnoreCase("Maximizar") && z > mejorZ) {
-                    mejorZ = z;
-                    puntoOptimo = p;
-                } else if (tipo.equalsIgnoreCase("Minimizar") && z < mejorZ) {
-                    mejorZ = z;
-                    puntoOptimo = p;
+
+            // --- NUEVO: detectar no acotado ---
+            if (metodoGrafico.esNoAcotado(tipo, funcionZ)) {
+                lblPuntoOptimo.setText("Problema " + tipo + ": NO ACOTADO");
+            } else if (vertices.size() > 0) {
+                double mejorZ = tipo.equalsIgnoreCase("Maximizar")
+                                ? Double.NEGATIVE_INFINITY
+                                : Double.POSITIVE_INFINITY;
+                double[] puntoOptimo = null;
+
+                for (double[] p : vertices) {
+                    double z = coefs[0] * p[0] + coefs[1] * p[1];
+                    if (tipo.equalsIgnoreCase("Maximizar") && z > mejorZ) {
+                        mejorZ = z; puntoOptimo = p;
+                    } else if (tipo.equalsIgnoreCase("Minimizar") && z < mejorZ) {
+                        mejorZ = z; puntoOptimo = p;
+                    }
                 }
-            }
-            if (puntoOptimo != null) {
-                String mensaje = String.format("Punto óptimo (%s) Z=%.2f → x=%.2f, y=%.2f",
-                                               tipo, mejorZ, puntoOptimo[0], puntoOptimo[1]);
-                lblPuntoOptimo.setText(mensaje);
+
+                if (puntoOptimo != null) {
+                    String mensaje = String.format(
+                        "Punto óptimo (%s) Z=%.2f → x=%.2f, y=%.2f",
+                        tipo, mejorZ, puntoOptimo[0], puntoOptimo[1]
+                    );
+                    lblPuntoOptimo.setText(mensaje);
+                } else {
+                    lblPuntoOptimo.setText("No hay vértices factibles.");
+                }
+            } else {
+                lblPuntoOptimo.setText("No hay vértices factibles.");
             }
         }
 
@@ -161,9 +179,10 @@ private void calcularResultado() {
         modelo.getPanelTabla().repaint();
     }
 
-    // 6) Repintar panel gráfico
+    // 7) Repintar panel gráfico
     if (modelo.getPanelGrafico() != null) {
         modelo.getPanelGrafico().repaint();
     }
 }
+
 }

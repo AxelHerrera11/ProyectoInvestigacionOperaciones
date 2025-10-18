@@ -178,6 +178,41 @@ private void addUnique(List<double[]> lista, double[] p, double eps) {
     }
     lista.add(p);
 }
+// ====== DETECCIÓN DE NO ACOTADO ======
+public boolean esNoAcotado(String tipo, String funcionObj) {
+    double[] c = extraerCoefsObjetivo(funcionObj);
+    double dx = c[0], dy = c[1];
+    if (Math.abs(dx) < 1e-12 && Math.abs(dy) < 1e-12) return false; // FO nula
+
+    // Construye la lista de restricciones que realmente usas (incluye no-negatividad si aplica)
+    List<Restriccion> todas = new ArrayList<>(restricciones);
+    if (incluirNoNegatividad) {
+        todas.add(new Restriccion(1, 0, ">=", 0)); // x >= 0
+        todas.add(new Restriccion(0, 1, ">=", 0)); // y >= 0
+    }
+
+    if (tipo.equalsIgnoreCase("Maximizar")) {
+        // Si la dirección del objetivo (dx,dy) es factible, MAX es no acotado
+        return esDireccionFactible(dx, dy, todas);
+    } else {
+        // Para MIN, si -(dx,dy) es factible, MIN es no acotado
+        return esDireccionFactible(-dx, -dy, todas);
+    }
+}
+
+private boolean esDireccionFactible(double vx, double vy, List<Restriccion> lista) {
+    final double EPS = 1e-9;
+    for (Restriccion r : lista) {
+        double s = r.a * vx + r.b * vy;
+        switch (r.operador) {
+            case ">=": if (s < -EPS) return false; break;
+            case "<=": if (s >  EPS) return false; break;
+            case "=" : if (Math.abs(s) > EPS) return false; break;
+        }
+    }
+    return true;
+}
+
 
 // =========================================================
 // ============= UTILIDADES DE CÁLCULO ================
