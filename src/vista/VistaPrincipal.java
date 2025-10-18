@@ -65,8 +65,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnMetodoSimplex = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        btnMetodoHola = new javax.swing.JPanel();
+        btnMetodoTransporte = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        btnMetodoAsignacion = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         contenedor = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         barraMovimiento = new javax.swing.JPanel();
@@ -142,19 +144,33 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         menu.add(btnMetodoSimplex, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 240, 40));
 
-        btnMetodoHola.setBackground(new java.awt.Color(21, 101, 192));
-        btnMetodoHola.setMaximumSize(new java.awt.Dimension(240, 100));
-        btnMetodoHola.setMinimumSize(new java.awt.Dimension(240, 100));
-        btnMetodoHola.setPreferredSize(new java.awt.Dimension(240, 100));
-        btnMetodoHola.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnMetodoTransporte.setBackground(new java.awt.Color(21, 101, 192));
+        btnMetodoTransporte.setMaximumSize(new java.awt.Dimension(240, 100));
+        btnMetodoTransporte.setMinimumSize(new java.awt.Dimension(240, 100));
+        btnMetodoTransporte.setPreferredSize(new java.awt.Dimension(240, 100));
+        btnMetodoTransporte.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Método HOLA");
-        btnMetodoHola.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 40));
+        jLabel8.setText("Método Transporte");
+        btnMetodoTransporte.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 40));
 
-        menu.add(btnMetodoHola, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 240, 40));
+        menu.add(btnMetodoTransporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 240, 40));
+
+        btnMetodoAsignacion.setBackground(new java.awt.Color(21, 101, 192));
+        btnMetodoAsignacion.setMaximumSize(new java.awt.Dimension(240, 100));
+        btnMetodoAsignacion.setMinimumSize(new java.awt.Dimension(240, 100));
+        btnMetodoAsignacion.setPreferredSize(new java.awt.Dimension(240, 100));
+        btnMetodoAsignacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setFont(new java.awt.Font("60s Scoreboard", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Método Asignación");
+        btnMetodoAsignacion.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 40));
+
+        menu.add(btnMetodoAsignacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 240, 40));
 
         split.setLeftComponent(menu);
 
@@ -264,9 +280,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel barraMovimiento;
     public javax.swing.JPanel btnCerrarPrograma;
+    public javax.swing.JPanel btnMetodoAsignacion;
     public javax.swing.JPanel btnMetodoGrafico;
-    public javax.swing.JPanel btnMetodoHola;
     public javax.swing.JPanel btnMetodoSimplex;
+    public javax.swing.JPanel btnMetodoTransporte;
     public javax.swing.JPanel contenedor;
     private javax.swing.JPanel fondoPrincipal;
     private javax.swing.JLabel jLabel1;
@@ -277,6 +294,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel menu;
     private javax.swing.JSplitPane split;
@@ -285,7 +303,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     public void setControlador(ControladorVistaPrincipal controlador) {
         this.btnMetodoGrafico.addMouseListener(controlador);
         this.btnMetodoSimplex.addMouseListener(controlador);
-        this.btnMetodoHola.addMouseListener(controlador);
+        this.btnMetodoTransporte.addMouseListener(controlador);
+        this.btnMetodoAsignacion.addMouseListener(controlador);
         this.btnCerrarPrograma.addMouseListener(controlador);
         this.barraMovimiento.addMouseListener(controlador);
         this.barraMovimiento.addMouseMotionListener(controlador);

@@ -8,6 +8,7 @@ import vista.VistaMetodoSimplex;
 
 import javax.swing.*;
 import java.awt.event.*;
+import vista.VistaMetodoAsignacion;
 import vista.VistaMetodoTransporte;
 
 public class ControladorVistaPrincipal implements MouseListener, MouseMotionListener, WindowListener {
@@ -38,7 +39,8 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
     private JPanel btnCerrarPrograma;
     private JPanel btnMetodoGrafico;
     private JPanel btnMetodoSimplex;
-    private JPanel btnMetodoHola;
+    private JPanel btnMetodoTransporte;
+    private JPanel btnMetodoAsignacion;
     private int xMouse;
     private int yMouse;
 
@@ -68,7 +70,8 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
         colorFondoPanel(btnCerrarPrograma, rojoPrincipal, e);
         colorFondoPanel(btnMetodoGrafico, azulHover, e);
         colorFondoPanel(btnMetodoSimplex, azulHover, e);
-        colorFondoPanel(btnMetodoHola, azulHover, e);
+        colorFondoPanel(btnMetodoTransporte, azulHover, e);
+        colorFondoPanel(btnMetodoAsignacion, azulHover, e);
     }
 
     @Override
@@ -76,7 +79,8 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
         colorFondoPanel(btnCerrarPrograma, grisOscuroHex, e);
         colorFondoPanel(btnMetodoGrafico, azulAcento, e);
         colorFondoPanel(btnMetodoSimplex, azulAcento, e);
-        colorFondoPanel(btnMetodoHola, azulAcento, e);
+        colorFondoPanel(btnMetodoTransporte, azulAcento, e);
+        colorFondoPanel(btnMetodoAsignacion, azulAcento, e);
     }
 
     @Override
@@ -110,8 +114,11 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
         } else if (e.getComponent().equals(btnMetodoSimplex)) {
             VistaMetodoSimplex vista = new VistaMetodoSimplex();
             mostrarPanel(vista);
-        } else if (e.getComponent().equals(btnMetodoHola)) {
+        } else if (e.getComponent().equals(btnMetodoTransporte)) {
             VistaMetodoTransporte vista = new VistaMetodoTransporte();
+            mostrarPanel(vista);
+        } else if(e.getComponent().equals(btnMetodoAsignacion)){
+            VistaMetodoAsignacion vista = new VistaMetodoAsignacion();
             mostrarPanel(vista);
         }
     }
@@ -127,7 +134,8 @@ public class ControladorVistaPrincipal implements MouseListener, MouseMotionList
         btnCerrarPrograma = modelo.getVista().btnCerrarPrograma;
         btnMetodoGrafico = modelo.getVista().btnMetodoGrafico;
         btnMetodoSimplex = modelo.getVista().btnMetodoSimplex;
-        btnMetodoHola = modelo.getVista().btnMetodoHola;
+        btnMetodoTransporte = modelo.getVista().btnMetodoTransporte;
+        btnMetodoAsignacion = modelo.getVista().btnMetodoAsignacion;
     }
 
     @Override

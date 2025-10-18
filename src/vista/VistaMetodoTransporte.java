@@ -140,7 +140,7 @@ private JLabel crearEtiqueta(String texto, Color fondo, Color textoColor) {
         jLabel1.setFont(new java.awt.Font("60s Scoreboard", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(36, 59, 85));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Método hola");
+        jLabel1.setText("Método TRansporte");
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(36, 59, 85)));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 50));
 
